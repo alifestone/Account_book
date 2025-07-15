@@ -34,7 +34,7 @@ async def load_extensions_all():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
             await bot.load_extension(f'cogs.{filename[:-3]}')
-            # logging.info(f'已載入模組: {filename[:-3]}')
+            logging.info(f'已載入模組: {filename[:-3]}')
 
 async def main():
     async with bot:
