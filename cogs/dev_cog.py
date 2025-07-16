@@ -8,6 +8,7 @@ from discord import app_commands, Interaction
 import asyncio
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from utils import db
 from utils import ui
 from utils.log import log
 
@@ -136,6 +137,16 @@ class DevCog(commands.Cog):
     async def _reload_cogs(self, cogs: list|str):
         await reload_cogs(cogs, self.bot)
     
+    @commands.command()
+    async def del_all(self, ctx): #delate all data in data.json
+        data = await db.read_data()
+        if data == {}:
+            await ctx.send('目前沒有資料')
+        else:
+            data.clear()
+            if data == {}:
+                await ctx.send('已將所有資料清除')
+            await db.write_data(data)
 
     # 載入指令程式檔案
     @commands.command()
