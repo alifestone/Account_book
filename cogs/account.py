@@ -104,7 +104,7 @@ class Account(commands.Cog):
             ]) + '\n'
         if owed:
             msg += f"{member.display_name} 被欠：\n" + '\n'.join([
-                f"{i+1}. {r['amount']} 元 - {r['desc']} (代墊人: <@{r['debtor']}>, {r['time'][:10]})" for i, r in enumerate(owed)
+                f"{i+1}. {r['amount']} 元 - {r['desc']} (欠款人: <@{r['debtor']}>, {r['time'][:10]})" for i, r in enumerate(owed)
             ])
         if not msg:
             msg = f"{member.display_name} 沒有任何欠債紀錄。"
