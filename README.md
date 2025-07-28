@@ -73,11 +73,11 @@ python bot.py
 ## 🗣 使用說明
 所有指令<br>
 <img width="732" height="793" alt="image" src="https://github.com/user-attachments/assets/c7a9de4e-a86a-4fd1-b64e-397ce442eb64" /><br>
-add 指令記錄了誰幫誰代墊了多少，以及該筆帳的使用地方。<br>
-del 指令將刪除還清的項目。<br>
-list 指令顯示指定使用者未清算(**註1**)過的帳目<br>
-list_all 指令顯示所有未清算過的帳目<br>
-list_sum 將所有帳目清算<br>
+- add 指令記錄了誰幫誰代墊了多少，以及該筆帳的使用地方。<br>
+- del 指令將刪除還清的項目。<br>
+- list 指令顯示指定使用者未清算（**註1**）過的帳目<br>
+- list_all 指令顯示所有未清算過的帳目<br>
+- list_sum 將所有帳目清算<br>
 
 <br>
 註1：清算方式如下。若 A 幫 B 代墊了 1 塊錢，在此之後 B 幫 A 代墊了 2 塊錢。清算時會將 2 - 1 得出 A 需還 B 1 塊錢。
