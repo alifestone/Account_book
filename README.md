@@ -1,8 +1,8 @@
-# Discord.py Cogs Bot Template
+# 記帳 discord bot
 
-一個基於 discord.py 的模組化 Discord 機器人模板，採用 Cogs 架構設計，支援熱重載和開發者工具。
+模板 fork 自 [Dong-Chen-1031](https://github.com/Dong-Chen-1031)<br>
 
-
+Account bot 可以很好的解決朋友之間代墊金額記不清的情況，並做到隨時清算帳目。詳情可參考下方使用說明
 
 ## ✨ 特色功能
 
@@ -21,11 +21,14 @@ Discord-py-cogs/
 ├── settings.py         # 配置文件管理
 ├── requirements.txt    # 依賴套件清單
 ├── README.md          # 專案說明文件
-├── .env               # 環境變數配置 (需要創建)
+├── .env               # 環境變數配置
+├── data.json          # 記帳資料庫
 ├── cogs/              # 功能模組目錄
+|   ├── account.py     # 記帳指令核心引擎
 │   ├── dev_cog.py     # 開發者工具模組
 │   └── example_cog.py # 範例模組
 ├── utils/             # 工具函數目錄
+|   ├── db.py          # 讀寫 data.json
 │   ├── log.py         # 日誌系統
 │   ├── ui.py          # UI 工具函數
 │   └── types.py       # 型別定義
@@ -65,6 +68,40 @@ DEV_ID = [
 ```bash
 python bot.py
 ```
+在 terminal 中顯示「已同步 X 個斜線指令」表示成功運行
+
+## 使用說明
+所有指令<br>
+<img width="732" height="793" alt="image" src="https://github.com/user-attachments/assets/c7a9de4e-a86a-4fd1-b64e-397ce442eb64" />
+add 指令記錄了誰幫誰代墊了多少，以及該筆帳的使用地方。<br>
+del 指令將刪除還清的項目。<br>
+list 指令顯示指定使用者未清算(**註1**)過的帳目<br>
+list_all 指令顯示所有未清算過的帳目<br>
+list_sum 將所有帳目清算<br>
+
+<br>
+註1：清算方式如下。若 A 幫 B 代墊了 1 塊錢，在此之後 B 幫 A 代墊了 2 塊錢。清算時會將 2 - 1 得出 A 需還 B 1 塊錢。
+
+### add 指令
+<img width="665" height="200" alt="image" src="https://github.com/user-attachments/assets/7f91ea4d-9b86-46a9-a93b-2c05d3602b7d" />
+<img width="1234" height="307" alt="image" src="https://github.com/user-attachments/assets/76652496-858d-4457-bdfe-778f1b4800d4" />
+<img width="1231" height="336" alt="image" src="https://github.com/user-attachments/assets/cfe9dca7-ff90-4890-a0d2-690d03af0164" />
+
+### del 指令
+<img width="443" height="210" alt="image" src="https://github.com/user-attachments/assets/5efd6938-2fd6-4916-a928-aaeed0f863f1" />
+<img width="701" height="215" alt="image" src="https://github.com/user-attachments/assets/bd0360ff-ac78-4e37-a779-597453fa434a" />
+
+### list 指令
+<img width="886" height="858" alt="image" src="https://github.com/user-attachments/assets/de2b56d6-8d0f-4be3-b7e1-2b0d3ef87a2d" />
+<img width="1062" height="312" alt="image" src="https://github.com/user-attachments/assets/76e1895c-03a8-40b7-80da-c9380501b085" />
+(圖片中的代墊人已在程式碼中修正成還款人)
+
+### list_all 指令
+<img width="1394" height="304" alt="image" src="https://github.com/user-attachments/assets/f3366a72-d2d0-4132-8ddd-8b9e0bb96445" />
+
+### list_sum 指令
+<img width="784" height="278" alt="image" src="https://github.com/user-attachments/assets/55822703-312e-40c0-a153-277fc67834cc" />
+
 
 ## 🔧 開發者工具
 
@@ -109,6 +146,13 @@ python bot.py
 可在程式碼中放置簡單的邏輯，測試機器人是否正常運作
 ```
 .dev test               # 回應「測試成功！」確認機器人狀態
+```
+
+##### `.dev del_all`
+刪除 data.json 中的所有資料
+```
+.dev del_all            # 如果成功，將在 discord 中顯示「已將所有資料清除」
+                        # 如果資料為空，將在 discord 中顯示「目前沒有資料」
 ```
 
 ### 🎯 互動式模組管理
@@ -258,5 +302,3 @@ A: 請確認：
 如有問題或建議，歡迎開啟 Issue 或聯絡專案維護者。
 
 ---
-
-*最後更新：2025年6月22日*
